@@ -1,0 +1,23 @@
+.btn{
+    padding: 50px;
+    border-radius: 100%;
+    border: none;
+    box-shadow: 5px 3px 5px gray;
+}
+
+.rock{
+    background-color:rgba(190, 190, 190, 0.5);
+}
+
+.btn:hover{
+    transition: 500ms;
+    background-color:rgba(190, 190, 190, 1);
+    cursor: pointer;
+}
+
+
+.btn-box{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
