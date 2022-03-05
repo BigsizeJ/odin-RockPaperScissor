@@ -38,24 +38,27 @@ function game(){
     let player;
     let arr = ['rock', 'paper', 'scissor']
     
-    
     while(round != 0){
-        player = prompt("Rock Paper or Scissor?").toLowerCase()
-        let validChoice = arr.includes(player);    
-     
-        while(!validChoice){
-            alert("Not Valid Choice! Try Again!")
+        try {
             player = prompt("Rock Paper or Scissor?").toLowerCase()
-            validChoice = arr.includes(player);
+            let validChoice = arr.includes(player);    
+            while(!validChoice){
+                alert("Not Valid Choice! Try Again!")
+                player = prompt("Rock Paper or Scissor?").toLowerCase()
+                validChoice = arr.includes(player);
+            }
+            play = playRound(player, computerPlay())
+            if(play == 1){
+                playerScore++;
+            }
+            else if(play == 0){
+                computerScore++;
+            }
+            round--;
+            
+        } catch (TypeError) {
+            console.log("Don't skip bro!")
         }
-        play = playRound(player, computerPlay())
-        if(play == 1){
-            playerScore++;
-        }
-        else if(play == 0){
-            computerScore++;
-        }
-        round--;
     }
     console.log(`Player Score: ${playerScore} Computer Score: ${computerScore}`)
     if(playerScore > computerScore){
