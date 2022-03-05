@@ -35,8 +35,19 @@ function game(){
     let playerScore = 0
     let computerScore = 0
     let play
+    let player;
+    let arr = ['rock', 'paper', 'scissor']
+    
+    
     while(round != 0){
-        let player = prompt("Rock Paper or Scissor?").toLowerCase()
+        player = prompt("Rock Paper or Scissor?").toLowerCase()
+        let validChoice = arr.includes(player);    
+     
+        while(!validChoice){
+            alert("Not Valid Choice! Try Again!")
+            player = prompt("Rock Paper or Scissor?").toLowerCase()
+            validChoice = arr.includes(player);
+        }
         play = playRound(player, computerPlay())
         if(play == 1){
             playerScore++;
