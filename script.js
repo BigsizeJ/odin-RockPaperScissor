@@ -1,3 +1,6 @@
+const btns = document.querySelectorAll('.btn')
+const playerPick = document.querySelector('.pick')
+
 function computerPlay(){
     let arr = ['Rock', 'Paper', 'Scissor']
     let n = Math.floor(Math.random() * arr.length);
@@ -10,67 +13,65 @@ function playRound(playerSelection, computerSelection){
     computerSelection = computerSelection.toUpperCase()
     if(playerSelection == 'ROCK' && computerSelection == 'SCISSOR'){
         console.log(`You Win! ${playerSelection} beats ${computerSelection}`)
-        return 1
+        
     }
     else if(playerSelection == 'PAPER' && computerSelection == 'ROCK'){
         console.log(`You Win! ${playerSelection} beats ${computerSelection}`)
-        return 1
+        
     }
     else if(playerSelection == 'SCISSOR' && computerSelection == 'PAPER'){
         console.log(`You Win! ${playerSelection} beats ${computerSelection}`)
-        return 1
+  
     }
     else if(playerSelection == computerSelection){
         console.log(`Draw!`)
     }
-    else{
+    else if(playerSelection != computerSelection){
         console.log(`You Lose! ${computerSelection} beats ${playerSelection}`)
-        return 0
+        playerWinRound = false;
+        return false
     }
+    return true
+    
 }
 
+function clearImg(element){
+    element.setAttribute("class", "")
+    element.classList.add("pick")
+}
 
 function game(){
-    let round = 5;
-    let playerScore = 0
-    let computerScore = 0
-    let play
-    let player;
-    let arr = ['rock', 'paper', 'scissor']
-    
-    while(round != 0){
-        try {
-            player = prompt("Rock Paper or Scissor?").toLowerCase()
-            let validChoice = arr.includes(player);    
-            while(!validChoice){
-                alert("Not Valid Choice! Try Again!")
-                player = prompt("Rock Paper or Scissor?").toLowerCase()
-                validChoice = arr.includes(player);
-            }
-            play = playRound(player, computerPlay())
-            if(play == 1){
-                playerScore++;
-            }
-            else if(play == 0){
-                computerScore++;
-            }
-            round--;
-            
-        } catch (TypeError) {
-            console.log("Don't skip bro!")
+    let playerScore = 0;
+    let computerScore = 0;
+    btns.forEach(btn => btn.addEventListener('click', (e) => {
+        
+        let player = btn.value.toUpperCase()
+        
+        switch(player){
+            case "ROCK":
+                clearImg(playerPick)
+                playerPick.classList.add("fa-regular", "fa-hand-back-fist")
+                break
+            case "PAPER":
+                clearImg(playerPick)
+                playerPick.classList.add("fa-regular", "fa-hand")
+                break
+            case "SCISSOR":
+                clearImg(playerPick)
+                playerPick.classList.add("fa-regular", "fa-hand-scissors", "fa-rotate-90")
+                break
+            default:
+                clearImg(playerPick)
+                break
         }
-    }
-    console.log(`Player Score: ${playerScore} Computer Score: ${computerScore}`)
-    if(playerScore > computerScore){
-        console.log(`Round Done! Player Win!`)
-    }
-    else if(playerScore < computerScore){
-        console.log(`Round Done! Computer Win!`)
-    }
-    else{
-        console.log(`Round Done! It's a Draw!`)
-    }
+      
+        console.log(playRound(player, computerPlay()))
+    }))
+    
+    
 }
+
+
 
 game()
 
