@@ -4,6 +4,7 @@ body{
     height: 100vh;
     background: -webkit-linear-gradient(to left, #780206, #061161); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to left, #780206, #061161); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .displayPick{
@@ -24,9 +25,10 @@ body{
     border-radius: 100%;
     border: 20px solid blue;
     box-sizing: border-box;
-    box-shadow: 0px 20px 20px black;
+    box-shadow: 0px 10px 20px black;
     background-color: rgba(255, 255, 255, .5)
 }
+
 .computerPick{
     border: 20px solid red;
 }
@@ -42,6 +44,7 @@ body{
     cursor: pointer;
 
 }
+
 .btn-box{
     justify-content: center;
     display: flex;
@@ -57,10 +60,14 @@ body{
     font-size: 150px;
 }
 
-.left{
-
+.left, .right{
     display: flex;
     flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+
 }
 
 .left p, .right p{
@@ -69,7 +76,6 @@ body{
     color: black;
     font-weight: 700;
     text-align: center;
-    font-family:'Courier New', Courier, monospace;
 }
 
 .displayPick p{
@@ -77,10 +83,30 @@ body{
     margin: 0;
     margin-top: 10px;
 }
-.scoreboard{
+
+.board{
+    text-align: center;
     display: flex;
     flex-direction: column;
-    padding: 0;
-    margin: 0;
-    text-align: center;
+    min-width: 250px;
 }
+
+.board > .rule{
+    text-align: center;
+    font-size: 25px;
+}
+
+.scoreboard
+{
+    display: flex;
+}
+
+.pScore, .cScore{
+    font-size: 20px;
+    width: 50%;
+}
+
+.score{
+    font-size: 25px;
+}
+

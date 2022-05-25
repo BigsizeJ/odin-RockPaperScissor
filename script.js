@@ -1,6 +1,14 @@
 const btns = document.querySelectorAll('.btn')
 const playerPick = document.querySelector('.pick')
 const computerPick = document.querySelector('.rand')
+const playerScore = document.querySelector(`[data-type=playerScore]`)
+const computerScore = document.querySelector(`[data-type=computerScore]`)
+const announce = document.querySelector(".announce")
+
+let pScore = 0
+let cScore = 0
+
+
 function computerPlay(){
     let arr = ['Rock', 'Paper', 'Scissor']
     let n = Math.floor(Math.random() * arr.length);
@@ -13,25 +21,34 @@ function playRound(playerSelection, computerSelection){
     computerSelection = computerSelection.toUpperCase()
     if(playerSelection == 'ROCK' && computerSelection == 'SCISSOR'){
         console.log(`You Win! ${playerSelection} beats ${computerSelection}`)
-        
+        pScore++
     }
     else if(playerSelection == 'PAPER' && computerSelection == 'ROCK'){
         console.log(`You Win! ${playerSelection} beats ${computerSelection}`)
+        pScore++
         
     }
     else if(playerSelection == 'SCISSOR' && computerSelection == 'PAPER'){
         console.log(`You Win! ${playerSelection} beats ${computerSelection}`)
-  
+        pScore++
     }
     else if(playerSelection == computerSelection){
         console.log(`Draw!`)
     }
-    else if(playerSelection != computerSelection){
+    else{
         console.log(`You Lose! ${computerSelection} beats ${playerSelection}`)
-        playerWinRound = false;
-        return false
+        cScore++
     }
-    return true
+    playerScore.innerText = pScore
+    computerScore.innerText = cScore
+    if(pScore >= 5){
+        announce.innerText = "PLAYER WIN!"
+        btns.forEach(btn => btn.disabled = true)
+    }
+    else if(cScore >= 5){
+        announce.innerText = "COMPUTER WIN!"
+        btns.forEach(btn => btn.disabled = true)
+    }
     
 }
 
@@ -85,19 +102,17 @@ function showPick(arg1, arg2){
     }
 }
 function game(){
-    let playerScore = 0;
-    let computerScore = 0;
+
     btns.forEach(btn => btn.addEventListener('click', (e) => {
         
         let player = btn.value.toUpperCase()
         let computer = computerPlay()
   
         showPick(player, computer)
-      
-        console.log(playRound(player, computer))
+
+        playRound(player, computer)
     }))
 }
-
 
 game()
 
