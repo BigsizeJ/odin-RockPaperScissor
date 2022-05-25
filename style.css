@@ -24,6 +24,7 @@ body{
     border-radius: 100%;
     border: 20px solid blue;
     box-sizing: border-box;
+    box-shadow: 0px 20px 20px black;
     background-color: rgba(255, 255, 255, .5)
 }
 .computerPick{
@@ -42,13 +43,44 @@ body{
 
 }
 .btn-box{
+    justify-content: center;
     display: flex;
+    align-items: center;
     gap: 20px;
     justify-content: center;
 }
+
 .hand{
     font-size: 100px;
 }
 .pick, .rand{
     font-size: 150px;
+}
+
+.left{
+
+    display: flex;
+    flex-direction: column;
+}
+
+.left p, .right p{
+    font-size: 25px;
+    padding: 0;
+    color: black;
+    font-weight: 700;
+    text-align: center;
+    font-family:'Courier New', Courier, monospace;
+}
+
+.displayPick p{
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+}
+.scoreboard{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    text-align: center;
 }
