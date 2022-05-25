@@ -1,10 +1,10 @@
 const btns = document.querySelectorAll('.btn')
 const playerPick = document.querySelector('.pick')
-
+const computerPick = document.querySelector('.rand')
 function computerPlay(){
     let arr = ['Rock', 'Paper', 'Scissor']
     let n = Math.floor(Math.random() * arr.length);
-    return arr[n].toLowerCase();
+    return arr[n].toUpperCase();
 }
 
 
@@ -36,41 +36,67 @@ function playRound(playerSelection, computerSelection){
 }
 
 function clearImg(element){
+   
     element.setAttribute("class", "")
-    element.classList.add("pick")
-}
+    if(element.dataset.type == 'pick'){
+        element.classList.add("pick")
+    }
+    else{
+        element.classList.add("rand")
+    }
+    
 
+}
+function showPick(arg1, arg2){
+    switch(arg1){
+        case "ROCK":
+            clearImg(playerPick)
+            playerPick.classList.add("fa-regular", "fa-hand-back-fist")
+            break
+        case "PAPER":
+            clearImg(playerPick)
+            playerPick.classList.add("fa-regular", "fa-hand")
+            break
+        case "SCISSOR":
+            clearImg(playerPick)
+            playerPick.classList.add("fa-regular", "fa-hand-scissors", "fa-rotate-90")
+            break
+        default:
+            clearImg(playerPick)
+            break
+    }
+
+    switch(arg2){
+        case "ROCK":
+            clearImg(computerPick)
+            computerPick.classList.add("fa-regular", "fa-hand-back-fist")
+            break
+        case "PAPER":
+            clearImg(computerPick)
+            computerPick.classList.add("fa-regular", "fa-hand")
+            break
+        case "SCISSOR":
+            clearImg(computerPick)
+            computerPick.classList.add("fa-regular", "fa-hand-scissors", "fa-rotate-90")
+            break
+        default:
+            clearImg(computerPick)
+            break
+    }
+}
 function game(){
     let playerScore = 0;
     let computerScore = 0;
     btns.forEach(btn => btn.addEventListener('click', (e) => {
         
         let player = btn.value.toUpperCase()
-        
-        switch(player){
-            case "ROCK":
-                clearImg(playerPick)
-                playerPick.classList.add("fa-regular", "fa-hand-back-fist")
-                break
-            case "PAPER":
-                clearImg(playerPick)
-                playerPick.classList.add("fa-regular", "fa-hand")
-                break
-            case "SCISSOR":
-                clearImg(playerPick)
-                playerPick.classList.add("fa-regular", "fa-hand-scissors", "fa-rotate-90")
-                break
-            default:
-                clearImg(playerPick)
-                break
-        }
+        let computer = computerPlay()
+  
+        showPick(player, computer)
       
-        console.log(playRound(player, computerPlay()))
+        console.log(playRound(player, computer))
     }))
-    
-    
 }
-
 
 
 game()
