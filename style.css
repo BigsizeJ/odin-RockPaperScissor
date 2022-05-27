@@ -10,12 +10,8 @@ body{
     font-family: 'Courier New', Courier, monospace;
 }
 
-
-
 .displayPick{
-
     height: 20px;
-
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -45,6 +41,7 @@ body{
     border: none;
     outline: none;
 }
+
 .btn:hover{
     color: rgb(238, 238, 43);
     transition: .1s linear;
@@ -85,7 +82,7 @@ body{
 }
 
 .left p, .right p{
-    font-size: 25px;
+    font-size: 28px;
     padding: 0;
     color: black;
     font-weight: 700;
@@ -109,7 +106,6 @@ body{
 .boardbg{
     padding: 10px 10px;
 }
-
 
 .boardbg > .rule{
     text-align: center;
